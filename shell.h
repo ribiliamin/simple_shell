@@ -12,5 +12,7 @@
 
 void screenprint(const char *string_2print);
 void prompt();
+void cmdexe(char **argv);
+char *get_location(char *cmd1);
 
 #endif
