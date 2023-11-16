@@ -8,6 +8,6 @@
 
 void prompt()
 {
-    screenprint("🧐>");
+    screenprint("🧐 >>");
 
 }

@@ -53,10 +53,12 @@ char *get_location(char *cmd1){
         if (stat(cmd1, &buffer) == 0)
         {
             return (cmd1);
-        }
+        }else{
+		perror("Error:");
+	}
 
 
-        return (NULL);
+        exit(EXIT_FAILURE);
     
     }
 

@@ -11,9 +11,8 @@ void cmdexe(char **argv){
         real_command = get_location(cmd);
 
         /* execute the actual command with execve */
-        if (execve(real_command, argv, NULL) == -1){
-            perror("Error:");
-        }
+        execve(real_command, argv, NULL);
+        exit(EXIT_FAILURE);
     }
     
 }

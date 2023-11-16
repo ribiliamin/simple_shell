@@ -69,13 +69,14 @@ int main(int ac, char **argv)
             screenprint("Error forking process.\n");
             exit(EXIT_FAILURE);
         } else if (child_pid == 0) {
+
             /*Child proces*/ 
             /* execute the command */
             cmdexe(argv);
         } else {
-        /*Parent process*/
 
-        wait(NULL);
+		/*Parent process*/
+		waitpid(child_pid, NULL, 0);
         }
     }
 
