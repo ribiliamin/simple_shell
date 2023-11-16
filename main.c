@@ -71,7 +71,7 @@ int main(int ac, char **argv)
         } else if (child_pid == 0) {
             /*Child proces*/ 
             /* execute the command */
-            execmd(argv);
+            cmdexe(argv);
         } else {
         // Parent process
         wait(NULL);
