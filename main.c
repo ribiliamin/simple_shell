@@ -3,9 +3,9 @@
 int main(int ac, char **argv)
 {
     /*char *prompt = "(Eshell) $ ";*/
-    char *lineptr = NULL, *lineptr_copy = NULL;
+    char *lineptr = NULL, *lineptr_cc = NULL;
     size_t n = 0;
-    ssize_t nchars_read;
+    ssize_t char_read;
     const char *delim = " \n";
     int num_tokens = 0;
     char *token;
@@ -19,23 +19,23 @@ int main(int ac, char **argv)
     while (1)
     {
         prompt();
-        nchars_read = getline(&lineptr, &n, stdin);
+        char_read = getline(&lineptr, &n, stdin);
         /* check if the getline function failed or reached EOF or user use CTRL + D */
-        if (nchars_read == -1)
+        if (char_read == -1)
         {
             screenprint("Exiting shell....\n");
             return (-1);
         }
 
         /* allocate space for a copy of the lineptr */
-        lineptr_copy = malloc(sizeof(char) * nchars_read);
-        if (lineptr_copy == NULL)
+        lineptr_cc = malloc(sizeof(char) * char_read);
+        if (lineptr_cc == NULL)
         {
             perror("tsh: memory allocation error");
             return (-1);
         }
-        /* copy lineptr to lineptr_copy */
-        strcpy(lineptr_copy, lineptr);
+        /* copy lineptr to lineptr_cc */
+        strcpy(lineptr_cc, lineptr);
 
         /********** split the string (lineptr) into an array of words ********/
         /* calculate the total number of tokens */
@@ -52,7 +52,7 @@ int main(int ac, char **argv)
         argv = malloc(sizeof(char *) * num_tokens);
 
         /* Store each token in the argv array */
-        token = strtok(lineptr_copy, delim);
+        token = strtok(lineptr_cc, delim);
 
         for (i = 0; token != NULL; i++)
         {
@@ -79,7 +79,7 @@ int main(int ac, char **argv)
     }
 
     /* free up allocated memory */
-    free(lineptr_copy);
+    free(lineptr_cc);
     free(lineptr);
 
     return (0);
