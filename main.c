@@ -73,7 +73,8 @@ int main(int ac, char **argv)
             /* execute the command */
             cmdexe(argv);
         } else {
-        // Parent process
+        /*Parent process*/
+
         wait(NULL);
         }
     }
